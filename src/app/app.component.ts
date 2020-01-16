@@ -22,7 +22,7 @@ export class AppComponent  implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this.mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addEventListener('change', this.mobileQueryListener);
-    this.speakers = sheetService.getSpeakers();
+    this.speakers = sheetService.speakers;
   }
 
   ngOnDestroy(): void {

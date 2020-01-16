@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Speaker} from '../models/Speaker';
 import {FillerWord} from '../models/FillerWord';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,15 @@ import {FillerWord} from '../models/FillerWord';
 
 export class SheetService {
 
-  constructor() { }
+  private speakerSubject = new Subject<Speaker>();
+
+  currentSpeaker$ = this.speakerSubject.asObservable();
+
+  speakers: Array<Speaker>;
+
+  constructor() {
+    this.setSpeakers();
+  }
 
   private static getFillerWords(): Array<FillerWord> {
     const fillerWords = new Array<FillerWord>();
@@ -76,66 +85,71 @@ export class SheetService {
     return fillerWords;
   }
 
-  getSpeakers(): Array<Speaker> {
-    const speakers = new Array<Speaker>();
+  private setSpeakers(): Array<Speaker> {
 
+    this.speakers = new Array<Speaker>();
     let speaker = new Speaker();
     speaker.name = 'Ripal';
     speaker.id = 1;
     speaker.type = 'Speaker# 1';
     speaker.fillerWords = SheetService.getFillerWords();
-    speakers.push(speaker);
+    this.speakers.push(speaker);
 
     speaker = new Speaker();
     speaker.name = 'Falguni';
     speaker.id = 2;
     speaker.type = 'Speaker# 2';
     speaker.fillerWords = SheetService.getFillerWords();
-    speakers.push(speaker);
+    this.speakers.push(speaker);
 
     speaker = new Speaker();
     speaker.name = 'Neil';
     speaker.id = 3;
     speaker.type = 'Speaker# 3';
     speaker.fillerWords = SheetService.getFillerWords();
-    speakers.push(speaker);
+    this.speakers.push(speaker);
 
     speaker = new Speaker();
     speaker.name = 'Calvin';
     speaker.id = 4;
     speaker.type = 'Toastmasters';
     speaker.fillerWords = SheetService.getFillerWords();
-    speakers.push(speaker);
+    this.speakers.push(speaker);
 
     speaker = new Speaker();
     speaker.name = 'Amy';
     speaker.id = 5;
     speaker.type = 'President';
     speaker.fillerWords = SheetService.getFillerWords();
-    speakers.push(speaker);
+    this.speakers.push(speaker);
 
     speaker = new Speaker();
     speaker.name = 'Ann';
     speaker.id = 6;
     speaker.type = 'Evaluator# 1';
     speaker.fillerWords = SheetService.getFillerWords();
-    speakers.push(speaker);
+    this.speakers.push(speaker);
 
     speaker = new Speaker();
     speaker.name = 'Brandan';
     speaker.id = 7;
     speaker.type = 'Evaluator# 2';
     speaker.fillerWords = SheetService.getFillerWords();
-    speakers.push(speaker);
+    this.speakers.push(speaker);
 
     speaker = new Speaker();
     speaker.name = 'Delle';
     speaker.id = 8;
     speaker.type = 'Evaluator# 2';
     speaker.fillerWords = SheetService.getFillerWords();
-    speakers.push(speaker);
+    this.speakers.push(speaker);
 
-    return speakers;
+    return this.speakers;
+  }
+
+  setCurrentSpeaker(id: number) {
+    const speaker = this.speakers.find(sp => sp.id === id);
+    this.speakerSubject.next(speaker);
   }
 
 }

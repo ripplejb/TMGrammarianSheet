@@ -5,12 +5,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import { SheetComponent } from './sheet/sheet.component';
+import { FillerWordCounterComponent } from './filler-word-counter/filler-word-counter.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SheetComponent
+    SheetComponent,
+    FillerWordCounterComponent
   ],
   imports: [
     BrowserModule,

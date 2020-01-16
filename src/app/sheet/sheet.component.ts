@@ -13,13 +13,17 @@ export class SheetComponent implements OnChanges {
   currentSpeaker: Speaker;
 
   constructor(private sheetService: SheetService) {
-    this.currentSpeaker = this.sheetService.getSpeakers().find(sp => sp.id === Number(this.speakerId));
+    this.sheetService.currentSpeaker$.subscribe(
+      speaker => {
+        this.currentSpeaker = speaker;
+      }
+    );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
       if (propName === 'speakerId') {
-        this.currentSpeaker = this.sheetService.getSpeakers().find(sp => sp.id === Number(this.speakerId));
+        this.sheetService.setCurrentSpeaker(Number(this.speakerId));
       }
     }
   }
