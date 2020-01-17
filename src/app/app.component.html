@@ -11,11 +11,17 @@
       </mat-nav-list>
     </mat-sidenav>
 
+
     <mat-sidenav-content>
-      <app-sheet speakerId="{{currentSpeakerId}}" ></app-sheet>
+      <div style="width: 150px; height: 150px; margin: 300px;">
+        <app-spinner *ngIf="speakers === undefined"></app-spinner>
+      </div>
+      <app-sheet *ngIf="speakers !== undefined"></app-sheet>
     </mat-sidenav-content>
 
   </mat-sidenav-container>
+
+
 </div>
 
 

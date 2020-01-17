@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Speaker} from '../models/Speaker';
 import {FillerWord} from '../models/FillerWord';
-import {Subject} from 'rxjs';
+import {Subject, timer} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,12 @@ import {Subject} from 'rxjs';
 export class SheetService {
 
   private speakerSubject = new Subject<Speaker>();
-
-  currentSpeaker$ = this.speakerSubject.asObservable();
-
+  private speakerListSubject = new Subject<Array<Speaker>>();
   speakers: Array<Speaker>;
 
-  constructor() {
-    this.setSpeakers();
-  }
+  currentSpeaker$ = this.speakerSubject.asObservable();
+  speakers$ = this.speakerListSubject.asObservable();
+
 
   private static getFillerWords(): Array<FillerWord> {
     const fillerWords = new Array<FillerWord>();
@@ -147,9 +145,18 @@ export class SheetService {
     return this.speakers;
   }
 
-  setCurrentSpeaker(id: number) {
+  loadCurrentSpeaker(id: number) {
     const speaker = this.speakers.find(sp => sp.id === id);
     this.speakerSubject.next(speaker);
+  }
+
+  loadSpeakerList() {
+    this.setSpeakers();
+    const numbers = timer(5000);
+    numbers.subscribe(() => {
+      this.speakerListSubject.next(this.speakers);
+    });
+
   }
 
 }

@@ -3,16 +3,18 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {MatIconModule, MatListModule, MatProgressBarModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import { SheetComponent } from './sheet/sheet.component';
 import { FillerWordCounterComponent } from './filler-word-counter/filler-word-counter.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SheetComponent,
-    FillerWordCounterComponent
+    FillerWordCounterComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import { FillerWordCounterComponent } from './filler-word-counter/filler-word-co
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

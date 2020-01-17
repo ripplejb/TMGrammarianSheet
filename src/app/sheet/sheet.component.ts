@@ -1,31 +1,29 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import {SheetService} from '../sheet-service/sheet.service';
 import {Speaker} from '../models/Speaker';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-sheet',
   templateUrl: './sheet.component.html',
   styleUrls: ['./sheet.component.css']
 })
-export class SheetComponent implements OnChanges {
+export class SheetComponent implements OnDestroy {
 
-  @Input() speakerId;
+  private subscription: Subscription;
+
   currentSpeaker: Speaker;
 
   constructor(private sheetService: SheetService) {
-    this.sheetService.currentSpeaker$.subscribe(
+    this.subscription = this.sheetService.currentSpeaker$.subscribe(
       speaker => {
         this.currentSpeaker = speaker;
       }
     );
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    for (const propName in changes) {
-      if (propName === 'speakerId') {
-        this.sheetService.setCurrentSpeaker(Number(this.speakerId));
-      }
-    }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

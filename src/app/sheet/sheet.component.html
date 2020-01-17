@@ -1,5 +1,5 @@
-<h1>{{currentSpeaker.name}}</h1>
-<div>
+<h1 *ngIf="currentSpeaker !== undefined">{{currentSpeaker.name}}</h1>
+<div *ngIf="currentSpeaker !== undefined">
 <app-filler-word-counter *ngFor="let fillerWord of currentSpeaker.fillerWords" [fillerWord]="fillerWord" class="filler-word-button"></app-filler-word-counter>
 </div>
 
