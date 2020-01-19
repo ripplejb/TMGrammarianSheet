@@ -1,28 +1,31 @@
-
 <div class="container">
   <mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <h1 class="app-name">Grammarian Sheet</h1>
   </mat-toolbar>
 
-  <mat-sidenav-container  class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #snav fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item routerLink="." *ngFor="let speaker of speakers; let i=index" (click)="onSelectName(speaker)" >{{speaker.name}}</a>
+        <a mat-list-item routerLink="." *ngFor="let speaker of speakers; let i=index"
+           (click)="onSelectName(speaker)">{{speaker.name}}</a>
       </mat-nav-list>
     </mat-sidenav>
-
 
 
     <mat-sidenav-content>
       <div *ngIf="speakers === undefined; then thenBlock else elseBlock"></div>
       <ng-template #thenBlock>
-        <div  style="position: absolute; left: 50%; top: 50%">
+        <div style="position: absolute; left: 50%; top: 50%">
           <app-spinner></app-spinner>
         </div>
       </ng-template>
       <ng-template #elseBlock>
-      <app-sheet></app-sheet>
+        <div style="position: absolute; left: 5%;">
+          <app-sheet></app-sheet>
+        </div>
       </ng-template>
     </mat-sidenav-content>
 
