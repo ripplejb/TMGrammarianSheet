@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1579577556910,
+  "timestamp": 1579577798582,
   "index": "/GrammarianSheet/index.html",
   "assetGroups": [
     {
@@ -52,7 +52,7 @@
     "/GrammarianSheet/index.html": "c59f6d2b1fbb1d19de223bba58877f98f04d3437",
     "/GrammarianSheet/main-es2015.64e52587913e2a174fd9.js": "01cb027152a077f29f1f29da3391b1788009f33b",
     "/GrammarianSheet/main-es5.64e52587913e2a174fd9.js": "33e1bbbfaf04b1dfce54e99653820853972e66e0",
-    "/GrammarianSheet/manifest.webmanifest": "785a903f2c9feac8140d444da5e4bb3a38197346",
+    "/GrammarianSheet/manifest.webmanifest": "20986996d12afd7133746763e27246e759799ca6",
     "/GrammarianSheet/polyfills-es2015.2987770fde9daa1d8a2e.js": "cf5cbfa9134716054fb479ab21362146cdf1f2ff",
     "/GrammarianSheet/polyfills-es5.6696c533341b95a3d617.js": "6bff0c03e05bb347d213ad1b3674045eb892d189",
     "/GrammarianSheet/runtime-es2015.edb2fcf2778e7bf1d426.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
